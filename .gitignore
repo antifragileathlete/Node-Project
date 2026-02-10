@@ -1,4 +1,7 @@
 *.log
 npm-debug.log*
 node_modules
+dist
 .env
+*.tsbuildinfo
+.DS_Store
