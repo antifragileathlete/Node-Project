@@ -5,6 +5,7 @@ import { LoggerModule } from 'nestjs-pino';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { HealthModule } from './health/health.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
     imports: [HealthModule, LoggerModule.forRoot({
@@ -35,7 +36,8 @@ import { HealthModule } from './health/health.module';
             ssl: {
                 rejectUnauthorized: false,
             },
-        }),],
+        }),
+        UsersModule,],
     controllers: [AppController],
     providers: [AppService],
 })
