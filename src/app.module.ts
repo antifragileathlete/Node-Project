@@ -6,6 +6,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { HealthModule } from './health/health.module';
 import { UsersModule } from './users/users.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
     imports: [HealthModule, LoggerModule.forRoot({
@@ -37,7 +38,8 @@ import { UsersModule } from './users/users.module';
                 rejectUnauthorized: false,
             },
         }),
-        UsersModule,],
+        UsersModule,
+        AuthModule,],
     controllers: [AppController],
     providers: [AppService],
 })
