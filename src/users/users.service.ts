@@ -1,5 +1,5 @@
 import * as bcrypt from 'bcrypt';
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from './users.entity';
@@ -35,7 +35,12 @@ export class UsersService {
     async findByEmail(email: string) {
         return this.usersRepository.findOne({
             where: { email },
-            select: ['id', 'email', 'password', 'firstName', 'lastName'],
+            select: ['id', 'email', 'password', 'firstName', 'lastName', 'role'],
         });
+    }
+    async delete(id: string) {
+        const result = await this.usersRepository.delete(id);
+        if (result.affected === 0) throw new NotFoundException(`User ${id} not found`);
+        return { message: `User ${id} deleted successfully` };
     }
 }
