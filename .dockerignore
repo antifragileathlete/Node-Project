@@ -1,5 +1,7 @@
 node_modules
 dist
+docker-compose
+.env
 .git
 Dockerfile
 README.md
